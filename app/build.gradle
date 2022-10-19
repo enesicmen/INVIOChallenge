@@ -19,7 +19,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "API_BASE_URL", '"http://www.omdbapi.com/"'
-        buildConfigField "String", "API_KEY", '"e8064aa3"'
+        buildConfigField "String", "API_KEY", '"17ee40a6"'
 
 
     }

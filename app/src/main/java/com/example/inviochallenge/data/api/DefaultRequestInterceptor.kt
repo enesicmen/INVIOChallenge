@@ -1,5 +1,6 @@
 package com.example.inviochallenge.data.api
 
+import com.example.inviochallenge.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
@@ -15,9 +16,14 @@ class DefaultRequestInterceptor: Interceptor {
 
         val original = chain.request()
 
+        val originalHttpUrl = original.url
+        val url = originalHttpUrl.newBuilder()
+            .addQueryParameter("apikey", BuildConfig.API_KEY)
+            .build()
+
         original.newBuilder().apply {
             addHeader("Content-Type", CONTENT_TYPE)
-            url(original.url)
+            url(url)
             return chain.proceed(build())
         }
     }

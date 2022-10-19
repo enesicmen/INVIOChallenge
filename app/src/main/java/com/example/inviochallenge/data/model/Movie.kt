@@ -6,8 +6,10 @@ import com.google.gson.annotations.SerializedName
 
 @Entity
 class Movie (
-
     @PrimaryKey
     @SerializedName("ID")
-    val id: Int
+    val id: Int,
+
+    @SerializedName("Title")
+    val title: String,
  )
