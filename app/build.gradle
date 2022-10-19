@@ -16,8 +16,12 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "API_BASE_URL", '"http://www.omdbapi.com/"'
+        buildConfigField "String", "API_KEY", '"e8064aa3"'
+
+
     }
 
     buildTypes {
