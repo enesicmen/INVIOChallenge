@@ -2,6 +2,7 @@ package com.example.inviochallenge.data.repository
 
 import android.content.Context
 import com.example.inviochallenge.data.DataCallback
+import com.example.inviochallenge.data.api.response.MovieDetailApiResponse
 import com.example.inviochallenge.data.model.Movie
 import com.example.inviochallenge.data.source.MovieDataSource
 import com.example.inviochallenge.di.qualifier.MovieDataSourceLocal
@@ -21,6 +22,14 @@ class MoviesRepository @Inject constructor(
             movieRemoteDataSource.searchMovies(searchText,callback)
         }else {
             movieLocalDataSource.searchMovies(searchText,callback)
+        }
+    }
+
+    fun getMovieDetail(movieId: String,callback: DataCallback<MovieDetailApiResponse>) {
+        if(context.isConnected){
+            movieRemoteDataSource.getMovieDetail(movieId,callback)
+        }else {
+            movieLocalDataSource.getMovieDetail(movieId,callback)
         }
     }
 }

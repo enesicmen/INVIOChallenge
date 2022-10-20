@@ -3,6 +3,8 @@ package com.example.inviochallenge.ui.movieList
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.inviochallenge.data.Resource
 import com.example.inviochallenge.data.model.Movie
 import com.example.inviochallenge.databinding.FragmentMoviesBinding
@@ -38,7 +40,6 @@ class MoviesFragment:
 
         getViewBinding()?.searchView?.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                    getViewBinding()?.rvSearchMovie?.scrollToPosition(0)
                     if(query != null){
                         getViewBinding()?.rvSearchMovie?.scrollToPosition(0)
                         getViewModel()?.searchMovies(query)
@@ -65,10 +66,12 @@ class MoviesFragment:
         mMoviesAdapter = MoviesAdapter(
             mMovieList = mMoviesList,
             onClicked = {
-
+                val actionDetail = MoviesFragmentDirections.actionMoviesFragmentToMovieDetail(movieId = mMoviesList[it].movieId ?: "")
+                findNavController().navigate(actionDetail)
             }
         )
         getViewBinding()?.rvSearchMovie?.adapter = mMoviesAdapter
+        getViewBinding()?.rvSearchMovie?.layoutManager = GridLayoutManager(activity, 3)
     }
 
     private fun setMovieList(movies: List<Movie>) {

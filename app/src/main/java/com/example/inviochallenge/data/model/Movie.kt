@@ -7,9 +7,18 @@ import com.google.gson.annotations.SerializedName
 @Entity
 class Movie (
     @PrimaryKey
-    @SerializedName("ID")
-    val id: Int,
+    @SerializedName("imdbID")
+    val movieId: String,
 
     @SerializedName("Title")
     val title: String,
+
+    @SerializedName("Year")
+    val year: String,
+
+    @SerializedName("Type")
+    val type: String,
+
+    @SerializedName("Poster")
+    val movieImage: String,
  )

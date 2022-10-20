@@ -2,6 +2,7 @@ package com.example.inviochallenge.data.source
 
 import com.example.inviochallenge.data.DataCallback
 import com.example.inviochallenge.data.api.ApiService
+import com.example.inviochallenge.data.api.response.MovieDetailApiResponse
 import com.example.inviochallenge.data.api.response.SearchApiResponse
 import com.example.inviochallenge.data.model.Movie
 import com.example.inviochallenge.di.qualifier.MovieDataSourceLocal
@@ -41,8 +42,30 @@ class MovieRemoteDataSource
         })
     }
 
+    override fun getMovieDetail(movieId: String, callback: DataCallback<MovieDetailApiResponse>) {
+
+        val call: Call<MovieDetailApiResponse> = apiService.getMovieDetail(movieId)
+        call.enqueue(object : Callback<MovieDetailApiResponse>{
+            override fun onResponse(
+                call: Call<MovieDetailApiResponse>,
+                response: Response<MovieDetailApiResponse>
+            ) {
+                if(response.isSuccessful && response.body() != null){
+                    callback.onSuccess(data = response.body()!!)
+                }else {
+                    callback.onError(message = response.message())
+                }
+            }
+            override fun onFailure(call: Call<MovieDetailApiResponse>, t: Throwable) {
+                callback.onError(message = t.message ?: "")
+            }
+        })
+    }
+
+
     override fun saveMovieList(movieList: List<Movie>) {
 
     }
+
 
 }

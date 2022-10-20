@@ -1,20 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/each_data_cardview"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:background="@color/white"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="200dp"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="10dp">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        tools:text="BATMAN"
-        android:textColor="@color/black"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/ivMovie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="src"
+                android:scaleType="fitXY"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+
+            <TextView
+                android:id="@+id/tvYear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:ellipsize="end"
+                android:gravity="bottom|center|left"
+                android:text="2001"
+                android:textColor="#E5DD75"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tvTtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center|left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="20dp"
+                android:ellipsize="end"
+                android:gravity="bottom"
+                android:maxLines="2"
+                android:text="Batman"
+                android:textColor="#FFF3F3"
+                android:textSize="12sp" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

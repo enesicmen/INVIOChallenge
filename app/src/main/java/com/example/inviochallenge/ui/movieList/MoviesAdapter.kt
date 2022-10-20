@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.inviochallenge.data.model.Movie
 import com.example.inviochallenge.databinding.RowMoviesBinding
 import com.example.inviochallenge.ui.common.RecyclerItemClickListener
+import com.example.inviochallenge.ui.common.ext.load
 
 class MoviesAdapter(
     private val mMovieList: MutableList<Movie>,
@@ -34,7 +35,9 @@ class MoviesAdapter(
 
         fun bind(item: Movie) {
             binding.apply {
-                title.text = item.title
+                tvTtitle.text = item.title
+                ivMovie.load(item.movieImage)
+                tvYear.text = item.year
             }
         }
     }
