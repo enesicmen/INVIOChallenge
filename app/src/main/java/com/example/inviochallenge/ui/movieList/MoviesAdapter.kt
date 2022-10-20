@@ -35,8 +35,8 @@ class MoviesAdapter(
 
         fun bind(item: Movie) {
             binding.apply {
-                tvTtitle.text = item.title
-                ivMovie.load(item.movieImage)
+                tvTitle.text = item.title
+                ivImage.load(item.movieImage)
                 tvYear.text = item.year
             }
         }

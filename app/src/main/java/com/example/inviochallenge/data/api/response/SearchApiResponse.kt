@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 data class SearchApiResponse(
 
     @SerializedName("Search")
-    val movies: List<Movie>
+    val movies: List<Movie>? = emptyList()
 )

@@ -27,8 +27,7 @@ class MovieRemoteDataSource
                 response: Response<SearchApiResponse>
             ) {
                 if (response.isSuccessful) {
-                    val movieList = response.body()!!.movies
-                    //val movieList = response.body.search()!!
+                    val movieList = response.body()?.movies ?: emptyList()
                     movieLocalDataSource.saveMovieList(movieList)
                     callback.onSuccess(data = movieList)
                 } else {

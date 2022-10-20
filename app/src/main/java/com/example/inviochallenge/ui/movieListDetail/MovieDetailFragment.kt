@@ -1,12 +1,12 @@
 package com.example.inviochallenge.ui.movieListDetail
 
 import android.os.Bundle
-import android.view.View
 import com.example.inviochallenge.data.Resource
 import com.example.inviochallenge.data.api.response.MovieDetailApiResponse
 import com.example.inviochallenge.databinding.FragmentMovieDetailBinding
 import com.example.inviochallenge.ui.common.BaseFragment
 import com.example.inviochallenge.ui.common.ext.load
+import com.example.inviochallenge.ui.common.ext.setVisibility
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,16 +23,16 @@ class MovieDetailFragment:
         FragmentMovieDetailBinding.inflate(layoutInflater)
 
     override fun initView(savedInstanceState: Bundle?) {
-        onBackPressed()
         getViewModel()?.movieDetail?.observe(this) {
             when(it) {
+                is Resource.Loading -> getViewBinding()?.progressBar?.setVisibility(isVisible = true)
+
                 is Resource.Success -> {
+                    getViewBinding()?.progressBar?.setVisibility(isVisible = false)
                     mMovieDetail = it.data
                     setData()
                 }
-                is Resource.Error -> {
-
-                }
+                is Resource.Error -> getViewBinding()?.progressBar?.setVisibility(isVisible = false)
             }
         }
     }
@@ -50,27 +50,14 @@ class MovieDetailFragment:
         getViewModel()!!.getMovieDetail(movieId = mMovieId!!)
     }
 
-    private fun onBackPressed(){
-        getViewBinding()?.btnBack?.setOnClickListener(View.OnClickListener {
-
-        })
-    }
-
     private fun setData(){
         getViewBinding()?.apply {
-            tvRatings.text = mMovieDetail?.imdbrating
-            tvPlot.text = mMovieDetail?.plot
-            tvGenre.text = mMovieDetail?.genre
+            ivImage.load(mMovieDetail?.poster)
+            tvTitle.text = mMovieDetail?.title
+            tvYear.text = mMovieDetail?.year
             tvLanguage.text = mMovieDetail?.language
-            tvYear2.text = mMovieDetail?.year?.substring(0, 4)
-            tvRatings2.text = mMovieDetail?.metascore
-            tvStars.text = mMovieDetail?.actors
-            tvWriter.text = mMovieDetail?.writer
-            tvDirector.text = mMovieDetail?.director
-            tvBoxoffice.text = mMovieDetail?.boxoffice
-            ivDetailIamge.load(mMovieDetail?.poster)
-            ivDetailSmallImage.load(mMovieDetail?.poster)
+            tvActors.text = mMovieDetail?.actors
+            tvDescription.text = mMovieDetail?.plot
         }
-
     }
 }
