@@ -1,7 +1,7 @@
 package com.example.inviochallenge.ui.movieList
 
 import android.os.Bundle
-import android.view.View
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.inviochallenge.data.Resource
@@ -32,25 +32,26 @@ class MoviesFragment:
             }
         }
     }
-
     override fun initLogic() {
         super.initLogic()
-        getViewBinding()?.searchView?.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+
+        getViewBinding()?.searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                    if(query != null){
-                        getViewBinding()?.rvSearchMovie?.scrollToPosition(0)
-                        getViewModel()?.searchMovies(query)
-                        getViewBinding()?.searchView?.clearFocus()
-                    }else{
-                        Toast.makeText(context, "Text yazılmalı", Toast.LENGTH_SHORT).show()
-                    }
-                        return true
+                if(query != null){
+                    getViewBinding()?.rvSearchMovie?.scrollToPosition(0)
+                    getViewModel()?.searchMovies(query)
+                    getViewBinding()?.searchView?.clearFocus()
+                }else{
+                    Toast.makeText(context, "Text yazılmalı", Toast.LENGTH_SHORT).show()
                 }
+                return true
+            }
             override fun onQueryTextChange(newText: String?): Boolean {
                 return true
             }
         })
     }
+
 
     override fun setViewModelClass() = MoviesViewModel::class.java
 
@@ -78,6 +79,5 @@ class MoviesFragment:
             getViewBinding()?.rvSearchMovie.setVisibility(isVisible = false)
             getViewBinding()?.tvDataNotFound.setVisibility(isVisible = true)
         }
-
     }
 }

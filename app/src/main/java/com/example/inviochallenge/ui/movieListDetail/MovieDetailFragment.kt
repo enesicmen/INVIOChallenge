@@ -1,6 +1,7 @@
 package com.example.inviochallenge.ui.movieListDetail
 
 import android.os.Bundle
+import android.view.View
 import com.example.inviochallenge.data.Resource
 import com.example.inviochallenge.data.api.response.MovieDetailApiResponse
 import com.example.inviochallenge.databinding.FragmentMovieDetailBinding
@@ -23,6 +24,7 @@ class MovieDetailFragment:
         FragmentMovieDetailBinding.inflate(layoutInflater)
 
     override fun initView(savedInstanceState: Bundle?) {
+        clickOnBack()
         getViewModel()?.movieDetail?.observe(this) {
             when(it) {
                 is Resource.Loading -> getViewBinding()?.progressBar?.setVisibility(isVisible = true)
@@ -58,6 +60,13 @@ class MovieDetailFragment:
             tvLanguage.text = mMovieDetail?.language
             tvActors.text = mMovieDetail?.actors
             tvDescription.text = mMovieDetail?.plot
+            tvMovieName.text = mMovieDetail?.title
         }
+    }
+
+    private fun clickOnBack() {
+        getViewBinding()?.backButton?.setOnClickListener(View.OnClickListener {
+            requireActivity().onBackPressed()
+        })
     }
 }
