@@ -2,10 +2,10 @@ package com.example.inviochallenge.data
 
 object  Constants {
 
-    object Api{
+    object Api {
         const val TIMEOUT = 15
     }
-    object Database{
+    object Database {
         const val NAME = "movie"
     }
 }

@@ -8,9 +8,3 @@ sealed class Resource<T>(
     class Success<T>(data: T) : Resource<T>(data)
     class Error<T>(message: String, data: T? = null) : Resource<T>(data, message)
 }
-
-val Resource<*>.isSucceeded
-    get() = this is Resource.Success && data != null
-
-val Resource<*>.isFailed
-    get() = this is Resource.Error

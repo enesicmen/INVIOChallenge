@@ -9,9 +9,9 @@
 
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="com.example.inviochallenge.ui.movieList.MoviesFragment"
+        android:name="com.example.inviochallenge.ui.movieList.MovieListFragment"
         android:label="Movies"
-        tools:layout="@layout/fragment_movies">
+        tools:layout="@layout/fragment_movie_list">
 
         <action
             android:id="@+id/action_moviesFragment_to_movieDetail"
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/movieDetail"
-        android:name="com.example.inviochallenge.ui.movieListDetail.MovieDetailFragment"
+        android:name="com.example.inviochallenge.ui.movieDetail.MovieDetailFragment"
         android:label="MovieDetail"
         tools:layout="@layout/fragment_movie_detail">
 

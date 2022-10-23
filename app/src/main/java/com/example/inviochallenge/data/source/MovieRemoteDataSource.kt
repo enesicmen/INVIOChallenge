@@ -1,7 +1,7 @@
 package com.example.inviochallenge.data.source
 
 import com.example.inviochallenge.data.Resource
-import com.example.inviochallenge.data.api.ApiService
+import com.example.inviochallenge.data.remote.ApiService
 import com.example.inviochallenge.data.model.Movie
 import javax.inject.Inject
 

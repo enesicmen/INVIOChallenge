@@ -1,4 +1,4 @@
-package com.example.inviochallenge.data.api.response
+package com.example.inviochallenge.data.remote.response
 
 import com.example.inviochallenge.data.model.Movie
 import com.google.gson.annotations.SerializedName

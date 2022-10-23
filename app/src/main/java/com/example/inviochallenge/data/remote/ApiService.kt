@@ -1,6 +1,6 @@
-package com.example.inviochallenge.data.api
+package com.example.inviochallenge.data.remote
 
-import com.example.inviochallenge.data.api.response.SearchApiResponse
+import com.example.inviochallenge.data.remote.response.SearchApiResponse
 import com.example.inviochallenge.data.model.Movie
 import retrofit2.Response
 import retrofit2.http.GET

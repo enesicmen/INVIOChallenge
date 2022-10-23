@@ -81,31 +81,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        tools:text="12-01-2022:"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:text="12-01-2022:" />
 
     <TextView
         android:id="@+id/tvLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        tools:text="Language:"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvYear" />
+        app:layout_constraintTop_toBottomOf="@+id/tvYear"
+        tools:text="Language:" />
 
     <TextView
         android:id="@+id/tvActors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        tools:text="Actors"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLanguage" />
-
+        app:layout_constraintTop_toBottomOf="@+id/tvLanguage"
+        tools:text="Actors" />
 
     <TextView
         android:id="@+id/tvDescription"
@@ -113,10 +112,10 @@
         android:layout_marginTop="5dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        tools:text="description"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvActors" />
+        app:layout_constraintTop_toBottomOf="@+id/tvActors"
+        tools:text="description" />
 
     <ProgressBar
         android:id="@+id/progressBar"

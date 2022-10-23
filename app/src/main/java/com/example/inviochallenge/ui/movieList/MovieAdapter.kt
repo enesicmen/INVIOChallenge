@@ -4,17 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inviochallenge.data.model.Movie
-import com.example.inviochallenge.databinding.RowMoviesBinding
+import com.example.inviochallenge.databinding.RowMovieListBinding
 import com.example.inviochallenge.ui.common.RecyclerItemClickListener
 import com.example.inviochallenge.ui.common.ext.load
 
-class MoviesAdapter(
+class MovieAdapter(
     private val mMovieList: MutableList<Movie>,
     private val onClicked: RecyclerItemClickListener
-) : RecyclerView.Adapter<MoviesAdapter.ViewHolder> (){
+) : RecyclerView.Adapter<MovieAdapter.ViewHolder> (){
 
     class ViewHolder(
-        private val binding: RowMoviesBinding,
+        private val binding: RowMovieListBinding,
         private val onClicked: RecyclerItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -24,7 +24,7 @@ class MoviesAdapter(
                 onClicked: RecyclerItemClickListener,
             ): ViewHolder {
                 val layoutInflater = LayoutInflater.from(viewGroup.context)
-                val binding = RowMoviesBinding.inflate(layoutInflater, viewGroup, false)
+                val binding = RowMovieListBinding.inflate(layoutInflater, viewGroup, false)
                 return ViewHolder(binding = binding, onClicked = onClicked)
             }
         }

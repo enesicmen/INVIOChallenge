@@ -1,4 +1,4 @@
-package com.example.inviochallenge.ui.movieListDetail
+package com.example.inviochallenge.ui.movieDetail
 
 import android.os.Bundle
 import android.view.View
@@ -33,7 +33,9 @@ class MovieDetailFragment:
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        clickOnBack()
+        getViewBinding()?.backButton?.setOnClickListener(View.OnClickListener {
+            requireActivity().onBackPressed()
+        })
     }
 
     override fun initObservers() {
@@ -62,19 +64,15 @@ class MovieDetailFragment:
 
     private fun setData(){
         getViewBinding()?.apply {
-            ivImage.load(mMovieDetail?.movieImage)
-            tvTitle.text = mMovieDetail?.title
-            tvYear.text = mMovieDetail?.year
-            tvLanguage.text = mMovieDetail?.language
-            tvActors.text = mMovieDetail?.actors
-            tvDescription.text = mMovieDetail?.plot
-            tvMovieName.text = mMovieDetail?.title
+            mMovieDetail.let {
+                ivImage.load(it?.movieImage)
+                tvTitle.text = it?.title
+                tvYear.text = it?.year
+                tvLanguage.text = it?.language
+                tvActors.text = it?.actors
+                tvDescription.text = it?.plot
+                tvMovieName.text = it?.title
+            }
         }
-    }
-
-    private fun clickOnBack() {
-        getViewBinding()?.backButton?.setOnClickListener(View.OnClickListener {
-            requireActivity().onBackPressed()
-        })
     }
 }

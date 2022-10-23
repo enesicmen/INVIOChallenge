@@ -21,7 +21,6 @@ android {
         buildConfigField "String", "API_BASE_URL", '"http://www.omdbapi.com/"'
         buildConfigField "String", "API_KEY", '"17ee40a6"'
 
-
     }
 
     buildTypes {

@@ -10,7 +10,7 @@ import com.example.inviochallenge.ui.common.ext.isConnected
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class MoviesRepository @Inject constructor(
+class MovieRepository @Inject constructor(
     @ApplicationContext private var context: Context,
     @MovieDataSourceRemote private var movieRemoteDataSource: MovieDataSource,
     @MovieDataSourceLocal private var movieLocalDataSource: MovieDataSource,

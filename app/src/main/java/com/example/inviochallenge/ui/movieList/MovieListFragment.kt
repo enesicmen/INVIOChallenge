@@ -5,16 +5,16 @@ import android.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import com.example.inviochallenge.data.Resource
 import com.example.inviochallenge.data.model.Movie
-import com.example.inviochallenge.databinding.FragmentMoviesBinding
+import com.example.inviochallenge.databinding.FragmentMovieListBinding
 import com.example.inviochallenge.ui.common.BaseFragment
 import com.example.inviochallenge.ui.common.ext.setVisibility
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MoviesFragment:
-      BaseFragment<FragmentMoviesBinding,MoviesViewModel>(){
+class MovieListFragment:
+      BaseFragment<FragmentMovieListBinding,MovieListViewModel>(){
 
-    lateinit var mMoviesAdapter: MoviesAdapter
+    lateinit var mMovieAdapter: MovieAdapter
 
     private var mMoviesList: MutableList<Movie> = mutableListOf()
 
@@ -54,25 +54,25 @@ class MoviesFragment:
         })
     }
 
-    override fun setViewModelClass() = MoviesViewModel::class.java
+    override fun setViewModelClass() = MovieListViewModel::class.java
 
-    override fun setViewBinding(): FragmentMoviesBinding =
-        FragmentMoviesBinding.inflate(layoutInflater)
+    override fun setViewBinding(): FragmentMovieListBinding =
+        FragmentMovieListBinding.inflate(layoutInflater)
 
     private fun initMoviesAdapter() {
-        mMoviesAdapter = MoviesAdapter(
+        mMovieAdapter = MovieAdapter(
             mMovieList = mMoviesList,
             onClicked = {
-                val actionDetail = MoviesFragmentDirections.actionMoviesFragmentToMovieDetail(movieId = mMoviesList[it].movieId ?: "")
+                val actionDetail = MovieListFragmentDirections.actionMoviesFragmentToMovieDetail(movieId = mMoviesList[it].movieId ?: "")
                 findNavController().navigate(actionDetail)
             }
         )
-        getViewBinding()?.rvSearchMovie?.adapter = mMoviesAdapter
+        getViewBinding()?.rvSearchMovie?.adapter = mMovieAdapter
     }
     private fun setMovieList(movies: List<Movie>) {
         mMoviesList.clear()
         mMoviesList.addAll(movies)
-        mMoviesAdapter.notifyDataSetChanged()
+        mMovieAdapter.notifyDataSetChanged()
         if(movies.isNotEmpty()){
             getViewBinding()?.rvSearchMovie.setVisibility(isVisible = true)
             getViewBinding()?.tvDataNotFound.setVisibility(isVisible = false)

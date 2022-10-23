@@ -1,6 +1,6 @@
 package com.example.inviochallenge.di.module
 
-import com.example.inviochallenge.data.api.ApiService
+import com.example.inviochallenge.data.remote.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

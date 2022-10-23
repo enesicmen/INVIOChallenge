@@ -6,15 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.inviochallenge.data.Resource
 import com.example.inviochallenge.data.model.Movie
-import com.example.inviochallenge.data.repository.MoviesRepository
+import com.example.inviochallenge.data.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MoviesViewModel @Inject constructor(
-    private val moviesRepository: MoviesRepository
+class MovieListViewModel @Inject constructor(
+    private val moviesRepository: MovieRepository
 ): ViewModel() {
 
     private val _movieListLiveData = MutableLiveData<Resource<List<Movie>>>()

@@ -1,4 +1,4 @@
-package com.example.inviochallenge.data.api
+package com.example.inviochallenge.data.remote
 
 import com.example.inviochallenge.BuildConfig
 import okhttp3.Interceptor

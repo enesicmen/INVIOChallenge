@@ -2,7 +2,7 @@ package com.example.inviochallenge.di.module
 
 import com.example.inviochallenge.BuildConfig
 import com.example.inviochallenge.data.Constants
-import com.example.inviochallenge.data.api.DefaultRequestInterceptor
+import com.example.inviochallenge.data.remote.DefaultRequestInterceptor
 import com.example.inviochallenge.di.qualifier.DefaultInterceptor
 import com.example.inviochallenge.di.qualifier.LoggingInterceptor
 import dagger.Module

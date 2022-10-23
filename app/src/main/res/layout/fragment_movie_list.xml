@@ -58,19 +58,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/row_movies"
+        tools:listitem="@layout/row_movie_list"
         tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/tvDataNotFound"
         android:layout_width="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:visibility="gone"
         android:src="@drawable/data_not_found"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintTop_toBottomOf="@id/appbar" />
 
     <ProgressBar
         android:id="@+id/progressBar"
