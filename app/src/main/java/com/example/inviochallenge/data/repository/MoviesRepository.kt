@@ -1,8 +1,7 @@
 package com.example.inviochallenge.data.repository
 
 import android.content.Context
-import com.example.inviochallenge.data.DataCallback
-import com.example.inviochallenge.data.api.response.MovieDetailApiResponse
+import com.example.inviochallenge.data.Resource
 import com.example.inviochallenge.data.model.Movie
 import com.example.inviochallenge.data.source.MovieDataSource
 import com.example.inviochallenge.di.qualifier.MovieDataSourceLocal
@@ -13,23 +12,31 @@ import javax.inject.Inject
 
 class MoviesRepository @Inject constructor(
     @ApplicationContext private var context: Context,
+    @MovieDataSourceRemote private var movieRemoteDataSource: MovieDataSource,
     @MovieDataSourceLocal private var movieLocalDataSource: MovieDataSource,
-    @MovieDataSourceRemote private var movieRemoteDataSource: MovieDataSource
 ) {
 
-    fun getMovieList(searchText: String,callback: DataCallback<List<Movie>>) {
-        if(context.isConnected){
-            movieRemoteDataSource.searchMovies(searchText,callback)
-        }else {
-            movieLocalDataSource.searchMovies(searchText,callback)
+    suspend fun getMovieList(searchText: String): Resource<List<Movie>> {
+        return if(context.isConnected){
+            val result = movieRemoteDataSource.searchMovies(searchText)
+            if (result is Resource.Success){
+                movieLocalDataSource.saveMovies(movieList = result.data!!)
+            }
+            result
+        } else {
+            movieLocalDataSource.searchMovies(searchText)
         }
     }
 
-    fun getMovieDetail(movieId: String,callback: DataCallback<MovieDetailApiResponse>) {
-        if(context.isConnected){
-            movieRemoteDataSource.getMovieDetail(movieId,callback)
-        }else {
-            movieLocalDataSource.getMovieDetail(movieId,callback)
+    suspend fun getMovieDetail(movieId: String): Resource<Movie> {
+        return if(context.isConnected){
+            val result = movieRemoteDataSource.getMovieDetail(movieId)
+            if (result is Resource.Success){
+                movieLocalDataSource.saveMovie(movie = result.data!!)
+            }
+            return result
+        } else {
+            movieLocalDataSource.getMovieDetail(movieId)
         }
     }
 }

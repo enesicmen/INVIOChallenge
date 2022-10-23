@@ -2,7 +2,6 @@ package com.example.inviochallenge.ui.movieList
 
 import android.os.Bundle
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.inviochallenge.data.Resource
 import com.example.inviochallenge.data.model.Movie
@@ -21,7 +20,11 @@ class MoviesFragment:
 
     override fun initView(savedInstanceState: Bundle?) {
         initMoviesAdapter()
-        getViewModel()?.movieList?.observe(this){
+    }
+
+    override fun initObservers() {
+        super.initObservers()
+        getViewModel()?.movieListLiveData?.observe(this){
             when (it) {
                 is Resource.Loading ->getViewBinding()?.progressBar?.setVisibility(isVisible = true)
                 is Resource.Success -> {
@@ -32,6 +35,7 @@ class MoviesFragment:
             }
         }
     }
+
     override fun initLogic() {
         super.initLogic()
 
@@ -41,8 +45,6 @@ class MoviesFragment:
                     getViewBinding()?.rvSearchMovie?.scrollToPosition(0)
                     getViewModel()?.searchMovies(query)
                     getViewBinding()?.searchView?.clearFocus()
-                }else{
-                    Toast.makeText(context, "Text yazılmalı", Toast.LENGTH_SHORT).show()
                 }
                 return true
             }
@@ -51,7 +53,6 @@ class MoviesFragment:
             }
         })
     }
-
 
     override fun setViewModelClass() = MoviesViewModel::class.java
 

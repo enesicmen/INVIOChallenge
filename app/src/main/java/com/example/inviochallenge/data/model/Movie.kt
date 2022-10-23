@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 @Entity
 class Movie (
+
     @PrimaryKey
     @SerializedName("imdbID")
     val movieId: String,
@@ -21,4 +22,13 @@ class Movie (
 
     @SerializedName("Poster")
     val movieImage: String,
- )
+
+    @SerializedName("Language")
+    var language: String? = "",
+
+    @SerializedName("Plot")
+    var plot: String? = "",
+
+    @SerializedName("Actors")
+    var actors: String? = "",
+)

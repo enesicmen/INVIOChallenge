@@ -1,17 +1,16 @@
 package com.example.inviochallenge.data.api
 
-import com.example.inviochallenge.data.api.response.MovieDetailApiResponse
 import com.example.inviochallenge.data.api.response.SearchApiResponse
-import retrofit2.Call
+import com.example.inviochallenge.data.model.Movie
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
 
     @GET(".")
-    fun searchMovies(@Query("s") searchText: String):Call<SearchApiResponse>
+    suspend fun searchMovies(@Query("s") searchText: String): Response<SearchApiResponse>
 
     @GET(".")
-    fun getMovieDetail(@Query("i") movieId: String):Call<MovieDetailApiResponse>
+    suspend fun getMovieDetail(@Query("i") movieId: String): Response<Movie>
 }
-
