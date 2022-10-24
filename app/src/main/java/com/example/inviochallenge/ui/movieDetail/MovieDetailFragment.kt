@@ -3,9 +3,13 @@ package com.example.inviochallenge.ui.movieDetail
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import com.example.inviochallenge.R
 import com.example.inviochallenge.data.Resource
 import com.example.inviochallenge.data.model.Movie
 import com.example.inviochallenge.databinding.FragmentMovieDetailBinding
+import com.example.inviochallenge.ui.MainActivity
 import com.example.inviochallenge.ui.common.BaseFragment
 import com.example.inviochallenge.ui.common.ext.load
 import com.example.inviochallenge.ui.common.ext.setVisibility
@@ -33,7 +37,10 @@ class MovieDetailFragment:
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        getViewBinding()?.backButton?.setOnClickListener(View.OnClickListener {
+        val toolbar = getViewBinding()?.toolBar as Toolbar
+        (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
+        toolbar.title = "Movie Detail"
+        toolbar.setNavigationOnClickListener(View.OnClickListener {
             requireActivity().onBackPressed()
         })
     }
@@ -71,7 +78,6 @@ class MovieDetailFragment:
                 tvLanguage.text = it?.language
                 tvActors.text = it?.actors
                 tvDescription.text = it?.plot
-                tvMovieName.text = it?.title
             }
         }
     }

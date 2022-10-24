@@ -8,7 +8,7 @@
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.303" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/fragment_movie_detail.xml" value="0.31567028985507245" />
-        <entry key="app/src/main/res/layout/fragment_movie_list.xml" value="0.36231884057971014" />
+        <entry key="app/src/main/res/layout/fragment_movie_list.xml" value="0.25226449275362317" />
         <entry key="app/src/main/res/layout/fragment_movies.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/row_movie_detail.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/row_movie_list.xml" value="0.36231884057971014" />
