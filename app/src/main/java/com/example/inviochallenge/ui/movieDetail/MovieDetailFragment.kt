@@ -3,7 +3,6 @@ package com.example.inviochallenge.ui.movieDetail
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import com.example.inviochallenge.data.Resource
 import com.example.inviochallenge.data.model.Movie
 import com.example.inviochallenge.databinding.FragmentMovieDetailBinding

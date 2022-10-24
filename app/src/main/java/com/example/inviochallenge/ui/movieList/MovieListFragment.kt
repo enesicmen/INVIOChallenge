@@ -1,15 +1,13 @@
 package com.example.inviochallenge.ui.movieList
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.SearchView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
 import com.example.inviochallenge.R
 import com.example.inviochallenge.data.Resource
 import com.example.inviochallenge.data.model.Movie
 import com.example.inviochallenge.databinding.FragmentMovieListBinding
-import com.example.inviochallenge.ui.MainActivity
 import com.example.inviochallenge.ui.common.BaseFragment
 import com.example.inviochallenge.ui.common.ext.setVisibility
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,8 +22,21 @@ class MovieListFragment:
 
     override fun initView(savedInstanceState: Bundle?) {
         initMoviesAdapter()
-        setToolbar(title = getString(R.string.movies), toolbar = getViewBinding()?.toolBar)
+        getViewBinding()?.searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if(query != null){
+                    getViewBinding()?.rvSearchMovie?.scrollToPosition(0)
+                    getViewModel()?.searchMovies(query)
+                    getViewBinding()?.searchView?.clearFocus()
+                }
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
         getViewBinding()?.searchView?.isIconified = false
+        setToolbar(title = getString(R.string.movies), toolbar = getViewBinding()?.toolBar)
     }
 
     override fun initObservers() {
@@ -40,24 +51,6 @@ class MovieListFragment:
                 is Resource.Error -> getViewBinding()?.progressBar?.setVisibility(isVisible = false)
             }
         }
-    }
-
-    override fun initLogic() {
-        super.initLogic()
-
-        getViewBinding()?.searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if(query != null){
-                    getViewBinding()?.rvSearchMovie?.scrollToPosition(0)
-                    getViewModel()?.searchMovies(query)
-                    getViewBinding()?.searchView?.clearFocus()
-                }
-                return true
-            }
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return true
-            }
-        })
     }
 
     override fun setViewModelClass() = MovieListViewModel::class.java
@@ -75,6 +68,8 @@ class MovieListFragment:
         )
         getViewBinding()?.rvSearchMovie?.adapter = mMovieAdapter
     }
+
+    @SuppressLint("NotifyDataSetChanged")
     private fun setMovieList(movies: List<Movie>) {
         mMoviesList.clear()
         mMoviesList.addAll(movies)
