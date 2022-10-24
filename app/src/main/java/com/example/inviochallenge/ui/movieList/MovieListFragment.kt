@@ -14,7 +14,6 @@ import com.example.inviochallenge.ui.common.BaseFragment
 import com.example.inviochallenge.ui.common.ext.setVisibility
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MovieListFragment:
       BaseFragment<FragmentMovieListBinding,MovieListViewModel>(){
@@ -23,10 +22,9 @@ class MovieListFragment:
 
     private var mMoviesList: MutableList<Movie> = mutableListOf()
 
-
     override fun initView(savedInstanceState: Bundle?) {
         initMoviesAdapter()
-        setToolbar()
+        setToolbar(title = getString(R.string.movies), toolbar = getViewBinding()?.toolBar)
         getViewBinding()?.searchView?.isIconified = false
     }
 
@@ -88,12 +86,5 @@ class MovieListFragment:
             getViewBinding()?.rvSearchMovie.setVisibility(isVisible = false)
             getViewBinding()?.tvDataNotFound.setVisibility(isVisible = true)
         }
-    }
-
-    private fun setToolbar() {
-        val main = activity as MainActivity?
-        val toolbar = getViewBinding()?.toolBar as Toolbar
-        (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
-        main?.setTitle(R.string.search_movie)
     }
 }

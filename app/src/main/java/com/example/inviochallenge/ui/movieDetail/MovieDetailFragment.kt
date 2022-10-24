@@ -3,13 +3,10 @@ package com.example.inviochallenge.ui.movieDetail
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.inviochallenge.R
 import com.example.inviochallenge.data.Resource
 import com.example.inviochallenge.data.model.Movie
 import com.example.inviochallenge.databinding.FragmentMovieDetailBinding
-import com.example.inviochallenge.ui.MainActivity
 import com.example.inviochallenge.ui.common.BaseFragment
 import com.example.inviochallenge.ui.common.ext.load
 import com.example.inviochallenge.ui.common.ext.setVisibility
@@ -37,10 +34,7 @@ class MovieDetailFragment:
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        val toolbar = getViewBinding()?.toolBar as Toolbar
-        (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
-        toolbar.title = "Movie Detail"
-        toolbar.setNavigationOnClickListener(View.OnClickListener {
+        getViewBinding()?.toolBar?.setNavigationOnClickListener(View.OnClickListener {
             requireActivity().onBackPressed()
         })
     }
@@ -71,13 +65,14 @@ class MovieDetailFragment:
 
     private fun setData(){
         getViewBinding()?.apply {
-            mMovieDetail.let {
-                ivImage.load(it?.movieImage)
-                tvTitle.text = it?.title
-                tvYear.text = it?.year
-                tvLanguage.text = it?.language
-                tvActors.text = it?.actors
-                tvDescription.text = it?.plot
+            mMovieDetail?.let {
+                ivImage.load(it.movieImage)
+                tvTitle.text = it.title
+                tvYear.text = it.year
+                tvLanguage.text = it.language
+                tvActors.text = it.actors
+                tvDescription.text = it.plot
+                setToolbar(title = it.title, toolbar = toolBar)
             }
         }
     }
